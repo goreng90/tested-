@@ -1,0 +1,1999 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mutiara Jiwa — Kata-Kata Penuh Makna</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --bg2: #0f0f18;
+    --surface: #13131f;
+    --surface2: #1a1a2e;
+    --border: rgba(200,180,255,0.08);
+    --gold: #d4a853;
+    --gold2: #f0c866;
+    --lilac: #b89dff;
+    --lilac2: #d4c0ff;
+    --rose: #e891a0;
+    --teal: #5ecfcc;
+    --text: #e8e0f5;
+    --text2: #a89dc0;
+    --text3: #6b5f80;
+    --glow: rgba(180,150,255,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── CANVAS PARTICLES ── */
+  #particles-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  .page { position: relative; z-index: 1; }
+
+  /* ── HEADER ── */
+  header {
+    padding: 2rem 2rem 0;
+    text-align: center;
+    position: relative;
+  }
+
+  .logo-wrap {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+  }
+
+  .logo-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--gold), var(--lilac));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    box-shadow: 0 0 30px rgba(212,168,83,0.4);
+    animation: pulse-logo 3s ease-in-out infinite;
+  }
+
+  @keyframes pulse-logo {
+    0%, 100% { box-shadow: 0 0 20px rgba(212,168,83,0.3); }
+    50% { box-shadow: 0 0 50px rgba(212,168,83,0.6), 0 0 80px rgba(180,150,255,0.3); }
+  }
+
+  .logo-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    background: linear-gradient(135deg, var(--gold2), var(--lilac2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 0.05em;
+  }
+
+  .logo-sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.3em;
+    color: var(--text3);
+    text-transform: uppercase;
+  }
+
+  /* ── NAV TABS ── */
+  .nav-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 1.5rem 1rem;
+    flex-wrap: wrap;
+  }
+
+  .nav-tab {
+    padding: 0.55rem 1.2rem;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text2);
+    transition: all 0.3s ease;
+    display: flex; align-items: center; gap: 0.4rem;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .nav-tab:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(212,168,83,0.07);
+  }
+
+  .nav-tab.active {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(212,168,83,0.2), rgba(180,150,255,0.1));
+    color: var(--gold2);
+    box-shadow: 0 0 20px rgba(212,168,83,0.2);
+  }
+
+  /* ── PANELS ── */
+  .panel { display: none; animation: fadeUp 0.5s ease; }
+  .panel.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ════════════════════════════════
+     PANEL 1 — KATA-KATA
+  ════════════════════════════════ */
+
+  .section-header {
+    text-align: center;
+    padding: 1rem 1rem 0.5rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    background: linear-gradient(135deg, var(--gold2), var(--lilac2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Mood Picker */
+  .mood-section {
+    padding: 1rem 1.5rem;
+  }
+
+  .mood-label {
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    color: var(--text3);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+    text-align: center;
+  }
+
+  .mood-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .mood-btn {
+    padding: 0.45rem 1rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    cursor: pointer;
+    font-size: 0.82rem;
+    color: var(--text2);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .mood-btn:hover { transform: translateY(-2px); filter: brightness(1.2); }
+
+  .mood-btn.active {
+    border-color: currentColor;
+    color: white;
+    box-shadow: 0 0 15px currentColor;
+    transform: translateY(-2px);
+  }
+
+  /* Category Filter */
+  .cat-filter {
+    display: flex;
+    gap: 0.4rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .cat-btn {
+    padding: 0.35rem 0.9rem;
+    border-radius: 100px;
+    border: 1px solid var(--border);
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.78rem;
+    color: var(--text3);
+    transition: all 0.25s ease;
+    user-select: none;
+  }
+
+  .cat-btn:hover { color: var(--text); border-color: var(--border); }
+  .cat-btn.active {
+    border-color: var(--lilac);
+    color: var(--lilac2);
+    background: rgba(180,150,255,0.1);
+  }
+
+  /* Daily Spin */
+  .spin-section {
+    max-width: 680px;
+    margin: 1rem auto 1.5rem;
+    padding: 0 1.5rem;
+  }
+
+  .spin-card {
+    background: linear-gradient(135deg, var(--surface2), rgba(20,15,35,0.9));
+    border: 1px solid rgba(212,168,83,0.2);
+    border-radius: 20px;
+    padding: 1.8rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .spin-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 21px;
+    background: linear-gradient(135deg, var(--gold), transparent, var(--lilac));
+    z-index: -1;
+    opacity: 0.2;
+  }
+
+  .spin-card-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+
+  .spin-quote-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+    min-height: 4rem;
+    transition: all 0.4s ease;
+  }
+
+  .spin-quote-author {
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  .spin-btn {
+    margin-top: 1.2rem;
+    padding: 0.7rem 2rem;
+    background: linear-gradient(135deg, var(--gold), var(--lilac));
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    color: #0a0a0f;
+    transition: all 0.3s ease;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+
+  .spin-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 30px rgba(212,168,83,0.5);
+  }
+
+  .spin-btn.spinning .spin-icon { animation: rotate 0.6s linear infinite; }
+
+  @keyframes rotate { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+
+  .spin-icon { display: inline-block; transition: transform 0.3s; }
+
+  /* Quote Cards Grid */
+  .quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    padding: 0 1.5rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .quote-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.35s ease;
+    animation: fadeUp 0.4s ease both;
+  }
+
+  .quote-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), var(--lilac), transparent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .quote-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(212,168,83,0.25);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4), 0 0 20px rgba(212,168,83,0.08);
+  }
+
+  .quote-card:hover::before { opacity: 1; }
+
+  .qc-num {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    font-size: 0.65rem;
+    color: var(--text3);
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .qc-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.8rem;
+    opacity: 0.7;
+  }
+
+  .qc-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .qc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .qc-author {
+    font-size: 0.75rem;
+    color: var(--gold);
+    letter-spacing: 0.05em;
+  }
+
+  .qc-cat {
+    font-size: 0.68rem;
+    color: var(--text3);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.15rem 0.6rem;
+    text-transform: capitalize;
+  }
+
+  .copy-toast {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: var(--gold);
+    color: #0a0a0f;
+    padding: 0.6rem 1.5rem;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 999;
+    pointer-events: none;
+  }
+
+  .copy-toast.show { transform: translateX(-50%) translateY(0); }
+
+  .no-results {
+    text-align: center;
+    padding: 3rem;
+    color: var(--text3);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+  }
+
+  /* ════════════════════════════════
+     PANEL 2 — WAKTU PRESISI
+  ════════════════════════════════ */
+
+  .clock-panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 1.5rem 3rem;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .clock-main {
+    text-align: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2.5rem 3rem;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .clock-main::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: radial-gradient(ellipse at center, rgba(212,168,83,0.03) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .clock-date {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: var(--text3);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .clock-time {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 10vw, 5.5rem);
+    background: linear-gradient(135deg, var(--gold2), var(--lilac2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .clock-ms {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 1.1rem;
+    color: var(--lilac);
+    letter-spacing: 0.1em;
+    opacity: 0.7;
+  }
+
+  .clock-tz {
+    margin-top: 0.8rem;
+    font-size: 0.78rem;
+    color: var(--text3);
+    letter-spacing: 0.15em;
+  }
+
+  /* Analog Clock */
+  .analog-wrap {
+    display: flex;
+    gap: 1.5rem;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .analog-clock-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .analog-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--text3);
+    text-transform: uppercase;
+  }
+
+  .analog-clock {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: var(--bg2);
+    border: 2px solid rgba(212,168,83,0.2);
+    position: relative;
+    box-shadow: inset 0 0 30px rgba(0,0,0,0.5), 0 0 40px rgba(212,168,83,0.1);
+  }
+
+  .clock-center {
+    position: absolute;
+    width: 10px; height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 8px var(--gold);
+  }
+
+  .hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: bottom center;
+    border-radius: 10px;
+  }
+
+  .hand-hour {
+    width: 4px;
+    height: 40px;
+    background: var(--lilac2);
+    margin-left: -2px;
+    box-shadow: 0 0 6px var(--lilac);
+  }
+
+  .hand-min {
+    width: 3px;
+    height: 55px;
+    background: var(--gold2);
+    margin-left: -1.5px;
+    box-shadow: 0 0 6px var(--gold);
+  }
+
+  .hand-sec {
+    width: 1.5px;
+    height: 62px;
+    background: var(--rose);
+    margin-left: -0.75px;
+    box-shadow: 0 0 4px var(--rose);
+  }
+
+  .clock-tick {
+    position: absolute;
+    width: 1px;
+    background: rgba(212,168,83,0.3);
+  }
+
+  /* Stopwatch */
+  .stopwatch-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.8rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .sw-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .sw-display {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    color: var(--teal);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+
+  .sw-laps {
+    max-height: 160px;
+    overflow-y: auto;
+    margin-bottom: 1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) transparent;
+  }
+
+  .sw-lap-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem 0.5rem;
+    font-size: 0.78rem;
+    color: var(--text2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sw-lap-item:last-child { border-bottom: none; }
+
+  .sw-btns { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+
+  .sw-btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 100px;
+    border: 1px solid;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.25s ease;
+    background: transparent;
+  }
+
+  .sw-btn-start { border-color: var(--teal); color: var(--teal); }
+  .sw-btn-start:hover { background: rgba(94,207,204,0.1); }
+  .sw-btn-stop { border-color: var(--rose); color: var(--rose); }
+  .sw-btn-stop:hover { background: rgba(232,145,160,0.1); }
+  .sw-btn-lap { border-color: var(--gold); color: var(--gold); }
+  .sw-btn-lap:hover { background: rgba(212,168,83,0.1); }
+  .sw-btn-reset { border-color: var(--text3); color: var(--text3); }
+  .sw-btn-reset:hover { background: rgba(107,95,128,0.1); }
+
+  /* Pomodoro */
+  .pomodoro-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 1.8rem;
+    width: 100%;
+    text-align: center;
+  }
+
+  .pom-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    color: var(--rose);
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .pom-ring-wrap {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 0.8rem;
+  }
+
+  .pom-ring { transform: rotate(-90deg); }
+
+  .pom-ring-bg { fill: none; stroke: rgba(255,255,255,0.05); stroke-width: 6; }
+
+  .pom-ring-fill {
+    fill: none;
+    stroke: var(--rose);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 320;
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s linear;
+    filter: drop-shadow(0 0 6px var(--rose));
+  }
+
+  .pom-time {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--rose);
+  }
+
+  .pom-mode {
+    font-size: 0.78rem;
+    color: var(--text3);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.1em;
+  }
+
+  .pom-count {
+    font-size: 0.72rem;
+    color: var(--text3);
+    margin-bottom: 1rem;
+  }
+
+  .pom-btns { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+
+  .pom-btn {
+    padding: 0.55rem 1.3rem;
+    border-radius: 100px;
+    border: 1px solid var(--rose);
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.25s ease;
+    background: transparent;
+    color: var(--rose);
+  }
+
+  .pom-btn:hover { background: rgba(232,145,160,0.1); }
+
+  /* ════════════════════════════════
+     PANEL 3 — GAME MEMORI
+  ════════════════════════════════ */
+  /* ════════════════════════════════
+     PANEL 3 — GAMES
+  ════════════════════════════════ */
+
+  .games-panel {
+    padding: 0.5rem 1.5rem 3rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .game-select-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .game-select-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    user-select: none;
+  }
+
+  .game-select-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 0 20px rgba(212,168,83,0.1);
+  }
+
+  .game-select-card.active-game {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(212,168,83,0.1), rgba(180,150,255,0.05));
+  }
+
+  .game-select-icon { font-size: 2.5rem; margin-bottom: 0.5rem; }
+  .game-select-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--text);
+    margin-bottom: 0.2rem;
+  }
+  .game-select-desc { font-size: 0.75rem; color: var(--text3); }
+
+  /* ── GAME: TEBAK KATA ── */
+  .game-area {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 2rem;
+    display: none;
+    animation: fadeUp 0.4s ease;
+  }
+
+  .game-area.visible { display: block; }
+
+  .game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .game-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--gold2);
+  }
+
+  .game-stats {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+    color: var(--text2);
+  }
+
+  .stat-badge {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.3rem 0.7rem;
+  }
+
+  /* Tebak Kata */
+  .hangman-area { text-align: center; }
+
+  .hangman-word {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+  }
+
+  .letter-box {
+    width: 36px;
+    height: 44px;
+    border-bottom: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--text);
+    transition: all 0.3s ease;
+  }
+
+  .letter-box.revealed { color: var(--gold2); }
+  .letter-box.wrong { color: var(--rose); border-color: var(--rose); }
+
+  .hangman-hint {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: var(--text3);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+
+  .keyboard-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+    max-width: 500px;
+    margin: 0 auto 1rem;
+  }
+
+  .key-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+  }
+
+  .key-btn:hover:not(:disabled) {
+    border-color: var(--gold);
+    color: var(--gold);
+    background: rgba(212,168,83,0.1);
+  }
+
+  .key-btn:disabled {
+    opacity: 0.25;
+    cursor: not-allowed;
+  }
+
+  .key-btn.correct { background: rgba(39,174,96,0.2); border-color: #27ae60; color: #27ae60; }
+  .key-btn.wrong-key { background: rgba(232,145,160,0.15); border-color: var(--rose); color: var(--rose); }
+
+  .lives-display {
+    display: flex;
+    gap: 0.3rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .life-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--rose);
+    transition: all 0.3s ease;
+    box-shadow: 0 0 6px var(--rose);
+  }
+
+  .life-dot.lost {
+    background: var(--text3);
+    box-shadow: none;
+    opacity: 0.3;
+  }
+
+  /* Memory Game */
+  .memory-board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.6rem;
+    max-width: 420px;
+    margin: 0 auto 1rem;
+  }
+
+  .mem-card {
+    aspect-ratio: 1;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+    user-select: none;
+  }
+
+  .mem-card.flipped { transform: rotateY(180deg); }
+  .mem-card.matched { transform: rotateY(180deg); animation: matchPulse 0.5s ease; }
+
+  @keyframes matchPulse {
+    0%, 100% { transform: rotateY(180deg) scale(1); }
+    50% { transform: rotateY(180deg) scale(1.1); }
+  }
+
+  .mem-face {
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+  }
+
+  .mem-back {
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    font-size: 1.5rem;
+    color: var(--lilac);
+    font-family: 'Playfair Display', serif;
+  }
+
+  .mem-front {
+    background: linear-gradient(135deg, var(--surface2), rgba(20,15,40,0.9));
+    border: 1px solid rgba(212,168,83,0.3);
+    font-size: 1.8rem;
+    transform: rotateY(180deg);
+  }
+
+  .mem-card.matched .mem-front {
+    background: linear-gradient(135deg, rgba(39,174,96,0.2), rgba(94,207,204,0.1));
+    border-color: #27ae60;
+  }
+
+  /* Quiz Game */
+  .quiz-area { max-width: 600px; margin: 0 auto; }
+
+  .quiz-question {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: var(--bg2);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .quiz-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.7rem;
+    margin-bottom: 1rem;
+  }
+
+  .quiz-opt {
+    padding: 0.8rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    cursor: pointer;
+    font-size: 0.85rem;
+    color: var(--text2);
+    transition: all 0.25s ease;
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .quiz-opt:hover:not(:disabled) {
+    border-color: var(--lilac);
+    color: var(--lilac2);
+    background: rgba(180,150,255,0.1);
+  }
+
+  .quiz-opt.correct-ans {
+    border-color: #27ae60;
+    background: rgba(39,174,96,0.15);
+    color: #4ade80;
+  }
+
+  .quiz-opt.wrong-ans {
+    border-color: var(--rose);
+    background: rgba(232,145,160,0.15);
+    color: var(--rose);
+  }
+
+  .quiz-opt:disabled { cursor: not-allowed; }
+
+  .quiz-progress {
+    display: flex;
+    gap: 0.3rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .qp-dot {
+    width: 28px; height: 4px;
+    border-radius: 2px;
+    background: var(--border);
+    transition: all 0.3s ease;
+  }
+
+  .qp-dot.done { background: var(--gold); }
+  .qp-dot.current { background: var(--lilac); }
+
+  .quiz-feedback {
+    text-align: center;
+    padding: 0.8rem;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    display: none;
+  }
+
+  .quiz-feedback.show { display: block; }
+  .quiz-feedback.good { background: rgba(39,174,96,0.1); color: #4ade80; border: 1px solid rgba(39,174,96,0.2); }
+  .quiz-feedback.bad { background: rgba(232,145,160,0.1); color: var(--rose); border: 1px solid rgba(232,145,160,0.2); }
+
+  .game-btn {
+    padding: 0.6rem 1.5rem;
+    border-radius: 100px;
+    border: 1px solid var(--gold);
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--gold);
+    transition: all 0.25s ease;
+    display: inline-flex; align-items: center; gap: 0.4rem;
+  }
+
+  .game-btn:hover { background: rgba(212,168,83,0.12); transform: translateY(-1px); }
+  .game-btn.primary {
+    background: linear-gradient(135deg, var(--gold), var(--lilac));
+    color: #0a0a0f;
+    border-color: transparent;
+  }
+  .game-btn.primary:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(212,168,83,0.4); }
+
+  .result-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    animation: fadeIn 0.3s ease;
+    display: none;
+  }
+
+  .result-overlay.show { display: flex; }
+
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .result-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    padding: 2.5rem;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  .result-emoji { font-size: 4rem; margin-bottom: 1rem; }
+
+  .result-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, var(--gold2), var(--lilac2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.5rem;
+  }
+
+  .result-desc { color: var(--text2); margin-bottom: 1.5rem; font-size: 0.9rem; }
+
+  /* General */
+  .divider {
+    width: 60px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 0 auto 1rem;
+  }
+
+  @media (max-width: 600px) {
+    .clock-main { padding: 1.5rem 1.2rem; }
+    .quotes-grid { grid-template-columns: 1fr; }
+    .quiz-options { grid-template-columns: 1fr; }
+    .memory-board { grid-template-columns: repeat(4, 1fr); gap: 0.4rem; }
+    .logo-title { font-size: 1.5rem; }
+    .game-select-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="page">
+  <header>
+    <div class="logo-wrap">
+      <div class="logo-icon">✦</div>
+      <div class="logo-title">Mutiara Jiwa</div>
+      <div class="logo-sub">Kata-Kata Penuh Makna</div>
+    </div>
+  </header>
+
+  <nav class="nav-tabs">
+    <button class="nav-tab active" onclick="switchPanel('quotes')">📜 Kata-Kata</button>
+    <button class="nav-tab" onclick="switchPanel('clock')">⏱ Waktu Presisi</button>
+    <button class="nav-tab" onclick="switchPanel('games')">🎮 Mini Game</button>
+  </nav>
+
+  <!-- ═══════════════════════ PANEL: QUOTES ═══════════════════════ -->
+  <div id="panel-quotes" class="panel active">
+    <div class="section-header">
+      <div class="section-title">Kata Hari Ini</div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- Daily Spin -->
+    <div class="spin-section">
+      <div class="spin-card">
+        <div class="spin-card-label">✦ Kata-Kata Untukmu Hari Ini ✦</div>
+        <div class="spin-quote-text" id="spin-text">Klik spin untuk mendapatkan kata-kata inspirasimu hari ini...</div>
+        <div class="spin-quote-author" id="spin-author"></div>
+        <button class="spin-btn" id="spin-btn" onclick="spinQuote()">
+          <span class="spin-icon" id="spin-icon">✦</span> Putar Kata
+        </button>
+      </div>
+    </div>
+
+    <!-- Mood Picker -->
+    <div class="mood-section">
+      <div class="mood-label">✦ Bagaimana Suasana Hatimu? ✦</div>
+      <div class="mood-grid" id="mood-grid"></div>
+    </div>
+
+    <!-- Category Filter -->
+    <div class="cat-filter" id="cat-filter"></div>
+
+    <!-- Grid -->
+    <div class="quotes-grid" id="quotes-grid"></div>
+  </div>
+
+  <!-- ═══════════════════════ PANEL: CLOCK ═══════════════════════ -->
+  <div id="panel-clock" class="panel">
+    <div class="section-header">
+      <div class="section-title">Waktu Presisi</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="clock-panel">
+      <!-- Digital Clock -->
+      <div class="clock-main">
+        <div class="clock-date" id="clock-date"></div>
+        <div class="clock-time" id="clock-time">00:00:00</div>
+        <div class="clock-ms" id="clock-ms">.000</div>
+        <div class="clock-tz" id="clock-tz"></div>
+      </div>
+
+      <!-- Analog + Zones -->
+      <div class="analog-wrap">
+        <div class="analog-clock-container">
+          <div class="analog-label">Jam Analog</div>
+          <div class="analog-clock" id="analog-clock">
+            <div class="clock-center"></div>
+            <div class="hand hand-hour" id="hand-hour"></div>
+            <div class="hand hand-min" id="hand-min"></div>
+            <div class="hand hand-sec" id="hand-sec"></div>
+          </div>
+        </div>
+
+        <!-- Stopwatch -->
+        <div style="flex:2; min-width:220px;">
+          <div class="stopwatch-card">
+            <div class="sw-label">⏱ Stopwatch</div>
+            <div class="sw-display" id="sw-display">00:00.000</div>
+            <div class="sw-laps" id="sw-laps"></div>
+            <div class="sw-btns">
+              <button class="sw-btn sw-btn-start" id="sw-start" onclick="swStart()">▶ Start</button>
+              <button class="sw-btn sw-btn-stop" id="sw-stop" onclick="swStop()" disabled>■ Stop</button>
+              <button class="sw-btn sw-btn-lap" onclick="swLap()" id="sw-lap" disabled>◎ Lap</button>
+              <button class="sw-btn sw-btn-reset" onclick="swReset()">↺ Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pomodoro -->
+      <div class="pomodoro-card">
+        <div class="pom-label">🍅 Pomodoro Timer</div>
+        <div class="pom-ring-wrap">
+          <svg class="pom-ring" width="120" height="120" viewBox="0 0 120 120">
+            <circle class="pom-ring-bg" cx="60" cy="60" r="51"/>
+            <circle class="pom-ring-fill" id="pom-ring" cx="60" cy="60" r="51"/>
+          </svg>
+          <div class="pom-time" id="pom-time">25:00</div>
+        </div>
+        <div class="pom-mode" id="pom-mode">Waktu Fokus 🎯</div>
+        <div class="pom-count" id="pom-count">Sesi ke-1</div>
+        <div class="pom-btns">
+          <button class="pom-btn" id="pom-start" onclick="pomStart()">▶ Mulai</button>
+          <button class="pom-btn" id="pom-stop" onclick="pomStop()" disabled>■ Berhenti</button>
+          <button class="pom-btn" onclick="pomReset()">↺ Reset</button>
+          <button class="pom-btn" onclick="pomSkip()">⏭ Lewati</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ PANEL: GAMES ═══════════════════════ -->
+  <div id="panel-games" class="panel">
+    <div class="section-header">
+      <div class="section-title">Mini Games</div>
+    </div>
+    <div class="divider"></div>
+
+    <div class="games-panel">
+      <div class="game-select-grid">
+        <div class="game-select-card" id="gs-hangman" onclick="selectGame('hangman')">
+          <div class="game-select-icon">🔤</div>
+          <div class="game-select-name">Tebak Kata</div>
+          <div class="game-select-desc">Tebak kata dari petunjuk kategori</div>
+        </div>
+        <div class="game-select-card" id="gs-memory" onclick="selectGame('memory')">
+          <div class="game-select-icon">🧠</div>
+          <div class="game-select-name">Memory Match</div>
+          <div class="game-select-desc">Cocokkan pasangan emoji tersembunyi</div>
+        </div>
+        <div class="game-select-card" id="gs-quiz" onclick="selectGame('quiz')">
+          <div class="game-select-icon">💡</div>
+          <div class="game-select-name">Tebak Penulis</div>
+          <div class="game-select-desc">Siapa yang menulis kata-kata ini?</div>
+        </div>
+      </div>
+
+      <!-- GAME: TEBAK KATA -->
+      <div id="game-hangman" class="game-area">
+        <div class="game-header">
+          <div class="game-title">🔤 Tebak Kata</div>
+          <div class="game-stats">
+            <span class="stat-badge">Skor: <strong id="hm-score">0</strong></span>
+            <span class="stat-badge">Level: <strong id="hm-level">1</strong></span>
+          </div>
+        </div>
+        <div class="hangman-area">
+          <div class="lives-display" id="lives-display"></div>
+          <div class="hangman-hint" id="hm-hint"></div>
+          <div class="hangman-word" id="hangman-word"></div>
+          <div class="keyboard-grid" id="keyboard-grid"></div>
+          <div style="text-align:center; margin-top:0.5rem;">
+            <button class="game-btn" onclick="initHangman()">↺ Kata Baru</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- GAME: MEMORY -->
+      <div id="game-memory" class="game-area">
+        <div class="game-header">
+          <div class="game-title">🧠 Memory Match</div>
+          <div class="game-stats">
+            <span class="stat-badge">Langkah: <strong id="mem-moves">0</strong></span>
+            <span class="stat-badge">Pasangan: <strong id="mem-pairs">0</strong>/8</span>
+          </div>
+        </div>
+        <div class="memory-board" id="memory-board"></div>
+        <div style="text-align:center;">
+          <button class="game-btn" onclick="initMemory()">↺ Mulai Lagi</button>
+        </div>
+      </div>
+
+      <!-- GAME: QUIZ -->
+      <div id="game-quiz" class="game-area">
+        <div class="game-header">
+          <div class="game-title">💡 Tebak Penulis</div>
+          <div class="game-stats">
+            <span class="stat-badge">Skor: <strong id="quiz-score">0</strong></span>
+            <span class="stat-badge">Soal: <strong id="quiz-num">1</strong>/10</span>
+          </div>
+        </div>
+        <div class="quiz-area">
+          <div class="quiz-progress" id="quiz-progress"></div>
+          <div class="quiz-question" id="quiz-question"></div>
+          <div class="quiz-options" id="quiz-options"></div>
+          <div class="quiz-feedback" id="quiz-feedback"></div>
+          <div style="text-align:center;">
+            <button class="game-btn" id="quiz-next-btn" onclick="nextQuestion()" style="display:none">Soal Berikutnya →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Result Overlay -->
+<div class="result-overlay" id="result-overlay">
+  <div class="result-card">
+    <div class="result-emoji" id="result-emoji">🎉</div>
+    <div class="result-title" id="result-title">Hebat!</div>
+    <div class="result-desc" id="result-desc"></div>
+    <button class="game-btn primary" onclick="closeResult()">Main Lagi ✦</button>
+  </div>
+</div>
+
+<div class="copy-toast" id="copy-toast">📋 Tersalin!</div>
+
+<script>
+/* ─────────────────────────────────────────────
+   PARTICLES
+───────────────────────────────────────────── */
+(function(){
+  const canvas = document.getElementById('particles-canvas');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.size = Math.random() * 1.5 + 0.3;
+      this.speedY = -Math.random() * 0.3 - 0.1;
+      this.speedX = (Math.random() - 0.5) * 0.2;
+      this.opacity = Math.random() * 0.5 + 0.1;
+      this.color = Math.random() > 0.5 ? '#d4a853' : '#b89dff';
+    }
+    update() {
+      this.y += this.speedY;
+      this.x += this.speedX;
+      if (this.y < 0 || this.x < 0 || this.x > canvas.width) this.reset();
+    }
+    draw() {
+      ctx.globalAlpha = this.opacity;
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => { p.update(); p.draw(); });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+/* ─────────────────────────────────────────────
+   DATA LOADER
+───────────────────────────────────────────── */
+let QUOTES_DATA = null;
+let selectedMood = null;
+let selectedCat = 'semua';
+
+async function loadData() {
+  try {
+    const res = await fetch('quotes.json');
+    QUOTES_DATA = await res.json();
+  } catch(e) {
+    // Fallback inline data
+    QUOTES_DATA = {
+      quotes: [
+        { id:1, text:"Hidup bukan tentang menunggu badai berlalu, tapi belajar menari di tengah hujan.", author:"Vivian Greene", category:"motivasi", mood:["sedih","galau","semangat"] },
+        { id:2, text:"Jangan takut gagal. Takutlah tidak pernah mencoba.", author:"Roy T. Bennett", category:"motivasi", mood:["takut","ragu","semangat"] },
+        { id:3, text:"Kebahagiaan bukan milik mereka yang memiliki segalanya, tapi milik mereka yang bersyukur.", author:"Anonim", category:"kehidupan", mood:["sedih","bahagia","tenang"] },
+        { id:4, text:"Cinta sejati tidak membuat kamu lebih lemah, melainkan membuatmu lebih kuat.", author:"Paulo Coelho", category:"cinta", mood:["cinta","rindu","bahagia"] },
+        { id:5, text:"Setiap hari adalah kesempatan baru untuk menjadi lebih baik dari kemarin.", author:"Anonim", category:"motivasi", mood:["semangat","bersyukur","tenang"] },
+        { id:6, text:"Perjalanan seribu mil dimulai dengan satu langkah pertama.", author:"Lao Tzu", category:"motivasi", mood:["semangat","ragu","takut"] },
+        { id:7, text:"Jadilah perubahan yang ingin kamu lihat di dunia ini.", author:"Mahatma Gandhi", category:"motivasi", mood:["semangat","tenang","bersyukur"] },
+        { id:8, text:"Waktu tidak menunggu siapapun. Gunakan setiap detiknya dengan bermakna.", author:"Anonim", category:"waktu", mood:["semangat","tenang","bersyukur"] },
+        { id:9, text:"Cinta pertama mungkin bukan yang terakhir, tapi cinta yang terakhir pasti yang paling indah.", author:"Anonim", category:"cinta", mood:["cinta","rindu","bahagia"] },
+        { id:10, text:"Bersyukurlah atas hal-hal kecil, karena suatu hari kamu akan sadar bahwa itu adalah hal-hal besar.", author:"Robert Brault", category:"kehidupan", mood:["bersyukur","tenang","bahagia"] },
+      ],
+      moods: [
+        {id:"semangat",label:"Semangat 🔥",color:"#FF6B35"},
+        {id:"sedih",label:"Sedih 💧",color:"#4A90D9"},
+        {id:"bahagia",label:"Bahagia ✨",color:"#F7C948"},
+        {id:"galau",label:"Galau 🌧️",color:"#7B68EE"},
+        {id:"cinta",label:"Cinta 💕",color:"#FF69B4"},
+        {id:"rindu",label:"Rindu 🌙",color:"#9B59B6"},
+        {id:"tenang",label:"Tenang 🍃",color:"#27AE60"},
+        {id:"takut",label:"Takut 😰",color:"#E74C3C"},
+        {id:"ragu",label:"Ragu 🤔",color:"#95A5A6"},
+        {id:"bersyukur",label:"Bersyukur 🙏",color:"#E67E22"}
+      ],
+      categories: [
+        {id:"semua",label:"Semua"},
+        {id:"motivasi",label:"Motivasi"},
+        {id:"cinta",label:"Cinta"},
+        {id:"kehidupan",label:"Kehidupan"},
+        {id:"persahabatan",label:"Persahabatan"},
+        {id:"waktu",label:"Waktu"}
+      ]
+    };
+  }
+  renderMoods();
+  renderCats();
+  renderQuotes();
+  spinQuote();
+}
+
+/* ─────────────────────────────────────────────
+   PANEL SWITCHING
+───────────────────────────────────────────── */
+function switchPanel(name) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+/* ─────────────────────────────────────────────
+   QUOTES PANEL
+───────────────────────────────────────────── */
+function renderMoods() {
+  const grid = document.getElementById('mood-grid');
+  grid.innerHTML = '';
+  QUOTES_DATA.moods.forEach(m => {
+    const btn = document.createElement('button');
+    btn.className = 'mood-btn';
+    btn.textContent = m.label;
+    btn.style.borderColor = m.color + '55';
+    btn.onclick = () => {
+      if (selectedMood === m.id) { selectedMood = null; btn.classList.remove('active'); }
+      else {
+        document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('active'));
+        selectedMood = m.id;
+        btn.classList.add('active');
+        btn.style.backgroundColor = m.color + '22';
+        btn.style.color = m.color;
+      }
+      renderQuotes();
+    };
+    grid.appendChild(btn);
+  });
+}
+
+function renderCats() {
+  const cf = document.getElementById('cat-filter');
+  cf.innerHTML = '';
+  QUOTES_DATA.categories.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'cat-btn' + (c.id === 'semua' ? ' active' : '');
+    btn.textContent = c.label;
+    btn.onclick = () => {
+      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedCat = c.id;
+      renderQuotes();
+    };
+    cf.appendChild(btn);
+  });
+}
+
+function renderQuotes() {
+  const grid = document.getElementById('quotes-grid');
+  let filtered = QUOTES_DATA.quotes;
+  if (selectedMood) filtered = filtered.filter(q => q.mood.includes(selectedMood));
+  if (selectedCat !== 'semua') filtered = filtered.filter(q => q.category === selectedCat);
+
+  if (!filtered.length) {
+    grid.innerHTML = '<div class="no-results">Tidak ada kata-kata untuk suasana hati ini...<br>Coba pilih yang lain 🌙</div>';
+    return;
+  }
+
+  const icons = { motivasi: '🔥', cinta: '💕', kehidupan: '🍃', persahabatan: '✨', waktu: '⏳' };
+
+  grid.innerHTML = filtered.map((q, i) => `
+    <div class="quote-card" style="animation-delay:${i * 0.05}s" onclick="copyQuote('${q.id}')">
+      <div class="qc-num">#${q.id}</div>
+      <div class="qc-icon">${icons[q.category] || '✦'}</div>
+      <div class="qc-text">"${q.text}"</div>
+      <div class="qc-footer">
+        <div class="qc-author">— ${q.author}</div>
+        <div class="qc-cat">${q.category}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function copyQuote(id) {
+  const q = QUOTES_DATA.quotes.find(x => x.id == id);
+  if (!q) return;
+  navigator.clipboard.writeText(`"${q.text}" — ${q.author}`).catch(() => {});
+  const toast = document.getElementById('copy-toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+/* SPIN */
+let lastSpinId = -1;
+function spinQuote() {
+  const btn = document.getElementById('spin-btn');
+  const icon = document.getElementById('spin-icon');
+  btn.classList.add('spinning');
+  icon.textContent = '⟳';
+
+  const qs = QUOTES_DATA ? QUOTES_DATA.quotes : [];
+  let pool = qs.filter(q => q.id !== lastSpinId);
+  if (!pool.length) pool = qs;
+  const chosen = pool[Math.floor(Math.random() * pool.length)];
+  lastSpinId = chosen.id;
+
+  const textEl = document.getElementById('spin-text');
+  const authEl = document.getElementById('spin-author');
+
+  textEl.style.opacity = '0';
+  authEl.style.opacity = '0';
+
+  setTimeout(() => {
+    textEl.textContent = `"${chosen.text}"`;
+    authEl.textContent = `— ${chosen.author}`;
+    textEl.style.opacity = '1';
+    authEl.style.opacity = '1';
+    btn.classList.remove('spinning');
+    icon.textContent = '✦';
+  }, 600);
+}
+
+/* ─────────────────────────────────────────────
+   CLOCK PANEL
+───────────────────────────────────────────── */
+function updateClock() {
+  const now = new Date();
+  const H = String(now.getHours()).padStart(2, '0');
+  const M = String(now.getMinutes()).padStart(2, '0');
+  const S = String(now.getSeconds()).padStart(2, '0');
+  const ms = String(now.getMilliseconds()).padStart(3, '0');
+
+  document.getElementById('clock-time').textContent = `${H}:${M}:${S}`;
+  document.getElementById('clock-ms').textContent = `.${ms}`;
+
+  const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Ags','Sep','Okt','Nov','Des'];
+  document.getElementById('clock-date').textContent =
+    `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+
+  const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  document.getElementById('clock-tz').textContent = tz;
+
+  // Analog
+  const secDeg = (now.getSeconds() + now.getMilliseconds() / 1000) * 6;
+  const minDeg = (now.getMinutes() + now.getSeconds() / 60) * 6;
+  const hrDeg  = (now.getHours() % 12 + now.getMinutes() / 60) * 30;
+
+  document.getElementById('hand-sec').style.transform = `rotate(${secDeg}deg)`;
+  document.getElementById('hand-min').style.transform = `rotate(${minDeg}deg)`;
+  document.getElementById('hand-hour').style.transform = `rotate(${hrDeg}deg)`;
+}
+
+setInterval(updateClock, 50);
+updateClock();
+
+/* Build clock ticks */
+const analogClock = document.getElementById('analog-clock');
+for (let i = 0; i < 12; i++) {
+  const tick = document.createElement('div');
+  tick.className = 'clock-tick';
+  const angle = i * 30;
+  const isMajor = true;
+  tick.style.cssText = `
+    position:absolute; width:${isMajor ? '2px' : '1px'};
+    height:${isMajor ? '10px' : '6px'}; background:rgba(212,168,83,${isMajor ? '0.6' : '0.3'});
+    top:6px; left:50%; transform-origin:center 74px;
+    transform:translateX(-50%) rotate(${angle}deg);
+  `;
+  analogClock.appendChild(tick);
+}
+
+/* ── STOPWATCH ── */
+let swInterval = null, swRunning = false, swStart2 = 0, swElapsed = 0, swLaps = [];
+
+function swFormat(ms) {
+  const m = Math.floor(ms / 60000);
+  const s = Math.floor((ms % 60000) / 1000);
+  const centis = Math.floor((ms % 1000));
+  return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${String(centis).padStart(3,'0')}`;
+}
+
+function swStart() {
+  if (swRunning) return;
+  swRunning = true;
+  swStart2 = Date.now() - swElapsed;
+  swInterval = setInterval(() => {
+    swElapsed = Date.now() - swStart2;
+    document.getElementById('sw-display').textContent = swFormat(swElapsed);
+  }, 10);
+  document.getElementById('sw-start').disabled = true;
+  document.getElementById('sw-stop').disabled = false;
+  document.getElementById('sw-lap').disabled = false;
+}
+
+function swStop() {
+  clearInterval(swInterval);
+  swRunning = false;
+  document.getElementById('sw-start').disabled = false;
+  document.getElementById('sw-stop').disabled = true;
+  document.getElementById('sw-lap').disabled = true;
+}
+
+function swLap() {
+  swLaps.push(swElapsed);
+  const container = document.getElementById('sw-laps');
+  const item = document.createElement('div');
+  item.className = 'sw-lap-item';
+  const prev = swLaps.length > 1 ? swLaps[swLaps.length - 2] : 0;
+  item.innerHTML = `<span>Lap ${swLaps.length}</span><span>${swFormat(swElapsed)}</span><span style="color:var(--text3)">+${swFormat(swElapsed - prev)}</span>`;
+  container.appendChild(item);
+  container.scrollTop = container.scrollHeight;
+}
+
+function swReset() {
+  clearInterval(swInterval);
+  swRunning = false; swElapsed = 0; swLaps = [];
+  document.getElementById('sw-display').textContent = '00:00.000';
+  document.getElementById('sw-laps').innerHTML = '';
+  document.getElementById('sw-start').disabled = false;
+  document.getElementById('sw-stop').disabled = true;
+  document.getElementById('sw-lap').disabled = true;
+}
+
+/* ── POMODORO ── */
+const POM_MODES = [
+  { label: 'Waktu Fokus 🎯', duration: 25 * 60 },
+  { label: 'Istirahat Pendek ☕', duration: 5 * 60 },
+  { label: 'Istirahat Panjang 🌿', duration: 15 * 60 }
+];
+let pomMode = 0, pomSession = 1, pomRemaining = POM_MODES[0].duration, pomRunning = false, pomInterval = null;
+
+function pomRender() {
+  const d = pomRemaining;
+  const m = Math.floor(d / 60), s = d % 60;
+  document.getElementById('pom-time').textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  document.getElementById('pom-mode').textContent = POM_MODES[pomMode].label;
+  document.getElementById('pom-count').textContent = `Sesi ke-${pomSession}`;
+
+  const total = POM_MODES[pomMode].duration;
+  const circumference = 320;
+  const offset = circumference * (1 - pomRemaining / total);
+  document.getElementById('pom-ring').style.strokeDashoffset = offset;
+}
+
+function pomStart() {
+  if (pomRunning) return;
+  pomRunning = true;
+  document.getElementById('pom-start').disabled = true;
+  document.getElementById('pom-stop').disabled = false;
+  pomInterval = setInterval(() => {
+    pomRemaining--;
+    pomRender();
+    if (pomRemaining <= 0) {
+      clearInterval(pomInterval);
+      pomRunning = false;
+      document.getElementById('pom-start').disabled = false;
+      document.getElementById('pom-stop').disabled = true;
+      pomMode = (pomMode + 1) % 3;
+      if (pomMode === 0) pomSession++;
+      pomRemaining = POM_MODES[pomMode].duration;
+      pomRender();
+      try { new Audio('data:audio/wav;base64,UklGRl9vT19XQVZFZm10IBAAAA').play(); } catch(e) {}
+    }
+  }, 1000);
+}
+
+function pomStop() {
+  clearInterval(pomInterval);
+  pomRunning = false;
+  document.getElementById('pom-start').disabled = false;
+  document.getElementById('pom-stop').disabled = true;
+}
+
+function pomReset() {
+  pomStop();
+  pomMode = 0; pomSession = 1; pomRemaining = POM_MODES[0].duration;
+  pomRender();
+}
+
+function pomSkip() {
+  pomStop();
+  pomMode = (pomMode + 1) % 3;
+  if (pomMode === 0) pomSession++;
+  pomRemaining = POM_MODES[pomMode].duration;
+  pomRender();
+}
+
+pomRender();
+
+/* ─────────────────────────────────────────────
+   GAMES
+───────────────────────────────────────────── */
+function selectGame(name) {
+  document.querySelectorAll('.game-select-card').forEach(c => c.classList.remove('active-game'));
+  document.querySelectorAll('.game-area').forEach(a => a.classList.remove('visible'));
+  document.getElementById('gs-' + name).classList.add('active-game');
+  document.getElementById('game-' + name).classList.add('visible');
+
+  if (name === 'hangman') initHangman();
+  if (name === 'memory') initMemory();
+  if (name === 'quiz') initQuiz();
+}
+
+/* ── HANGMAN ── */
+const HM_WORDS = [
+  { word: 'SEMANGAT', hint: 'Kata yang memberi dorongan untuk maju', cat: 'motivasi' },
+  { word: 'KEHIDUPAN', hint: 'Perjalanan dari lahir hingga menutup mata', cat: 'filosofi' },
+  { word: 'CINTA', hint: 'Perasaan terdalam antara dua jiwa', cat: 'perasaan' },
+  { word: 'KEBERANIAN', hint: 'Melangkah meski hati gemetar', cat: 'sifat' },
+  { word: 'KEBAHAGIAAN', hint: 'Tujuan tertinggi dalam hidup manusia', cat: 'perasaan' },
+  { word: 'SABAR', hint: 'Pohon yang berbuah manis', cat: 'sifat' },
+  { word: 'HARAPAN', hint: 'Cahaya di ujung terowongan gelap', cat: 'filosofi' },
+  { word: 'PERSAHABATAN', hint: 'Ikatan tanpa darah yang terasa seperti keluarga', cat: 'hubungan' },
+  { word: 'KEGAGALAN', hint: 'Batu loncatan menuju kesuksesan', cat: 'perjalanan' },
+  { word: 'SYUKUR', hint: 'Kunci kebahagiaan sejati', cat: 'sifat' },
+  { word: 'MIMPI', hint: 'Benih dari setiap pencapaian besar', cat: 'motivasi' },
+  { word: 'IKHLAS', hint: 'Memberi tanpa mengharap kembali', cat: 'sifat' },
+];
+
+let hmWord = '', hmGuessed = [], hmLives = 6, hmScore = 0, hmLevel = 1;
+
+function initHangman() {
+  const w = HM_WORDS[Math.floor(Math.random() * HM_WORDS.length)];
+  hmWord = w.word;
+  hmGuessed = [];
+  hmLives = 6;
+
+  document.getElementById('hm-hint').textContent = `💡 Petunjuk: ${w.hint} (${w.cat})`;
+  renderHangman();
+  renderKeyboard();
+  renderLives();
+}
+
+function renderHangman() {
+  const wordEl = document.getElementById('hangman-word');
+  wordEl.innerHTML = hmWord.split('').map(l => {
+    const revealed = l === ' ' || hmGuessed.includes(l);
+    return `<div class="letter-box ${revealed ? 'revealed' : ''}">${revealed ? l : ''}</div>`;
+  }).join('');
+}
+
+function renderLives() {
+  const el = document.getElementById('lives-display');
+  el.innerHTML = '';
+  for (let i = 0; i < 6; i++) {
+    const dot = document.createElement('div');
+    dot.className = 'life-dot' + (i >= hmLives ? ' lost' : '');
+    el.appendChild(dot);
+  }
+}
+
+function renderKeyboard() {
+  const grid = document.getElementById('keyboard-grid');
+  const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  grid.innerHTML = letters.split('').map(l => {
+    const isCorrect = hmGuessed.includes(l) && hmWord.includes(l);
+    const isWrong = hmGuessed.includes(l) && !hmWord.includes(l);
+    return `<button class="key-btn ${isCorrect ? 'correct' : ''} ${isWrong ? 'wrong-key' : ''}"
+      ${hmGuessed.includes(l) ? 'disabled' : ''} onclick="guessLetter('${l}')">${l}</button>`;
+  }).join('');
+}
+
+function guessLetter(l) {
+  if (hmGuessed.includes(l)) return;
+  hmGuessed.push(l);
+
+  if (!hmWord.includes(l)) {
+    hmLives--;
+    renderLives();
+  }
+
+  renderHangman();
+  renderKeyboard();
+
+  const won = hmWord.split('').every(c => c === ' ' || hmGuessed.includes(c));
+  if (won) {
+    hmScore += hmLives * 10 + 20;
+    hmLevel++;
+    document.getElementById('hm-score').textContent = hmScore;
+    document.getElementById('hm-level').textContent = hmLevel;
+    showResult('🎉', 'Luar Biasa!', `Kamu berhasil menebak "${hmWord}"!\nSkor kamu: ${hmScore}`);
+  } else if (hmLives <= 0) {
+    showResult('😔', 'Hampir!', `Kata yang benar adalah: "${hmWord}"\nCoba lagi ya!`);
+  }
+}
+
+/* ── MEMORY ── */
+const MEM_EMOJIS = ['🌸','🎭','✨','🔮','🌙','🎪','🦋','🌺'];
+let memBoard = [], memFlipped = [], memMatched = [], memMoves2 = 0, memLocked = false;
+
+function initMemory() {
+  const all = [...MEM_EMOJIS, ...MEM_EMOJIS];
+  memBoard = all.sort(() => Math.random() - 0.5);
+  memFlipped = []; memMatched = []; memMoves2 = 0; memLocked = false;
+  document.getElementById('mem-moves').textContent = '0';
+  document.getElementById('mem-pairs').textContent = '0';
+  renderMemory();
+}
+
+function renderMemory() {
+  const board = document.getElementById('memory-board');
+  board.innerHTML = memBoard.map((emoji, i) => {
+    const flipped = memFlipped.includes(i) || memMatched.includes(i);
+    const matched = memMatched.includes(i);
+    return `<div class="mem-card ${flipped ? 'flipped' : ''} ${matched ? 'matched' : ''}" onclick="flipCard(${i})">
+      <div class="mem-face mem-back">✦</div>
+      <div class="mem-face mem-front">${emoji}</div>
+    </div>`;
+  }).join('');
+}
+
+function flipCard(i) {
+  if (memLocked || memFlipped.includes(i) || memMatched.includes(i) || memFlipped.length >= 2) return;
+  memFlipped.push(i);
+  renderMemory();
+
+  if (memFlipped.length === 2) {
+    memMoves2++;
+    document.getElementById('mem-moves').textContent = memMoves2;
+    memLocked = true;
+    setTimeout(() => {
+      const [a, b] = memFlipped;
+      if (memBoard[a] === memBoard[b]) {
+        memMatched.push(a, b);
+        document.getElementById('mem-pairs').textContent = memMatched.length / 2;
+        if (memMatched.length === memBoard.length) {
+          setTimeout(() => showResult('🧠', 'Memori Hebat!', `Selesai dalam ${memMoves2} langkah!\nMakin sedikit langkah, makin jenius kamu.`), 300);
+        }
+      }
+      memFlipped = [];
+      memLocked = false;
+      renderMemory();
+    }, 800);
+  }
+}
+
+/* ── QUIZ ── */
+let quizQuestions = [], quizIdx = 0, quizScore2 = 0, quizAnswered = false;
+
+function initQuiz() {
+  if (!QUOTES_DATA) return;
+  const qs = QUOTES_DATA.quotes.filter(q => q.author !== 'Anonim');
+  const shuffled = [...qs].sort(() => Math.random() - 0.5);
+  quizQuestions = shuffled.slice(0, 10).map(q => {
+    const others = qs.filter(x => x.author !== q.author && x.author !== 'Anonim');
+    const distractors = others.sort(() => Math.random() - 0.5).slice(0, 3).map(x => x.author);
+    const opts = [...distractors, q.author].sort(() => Math.random() - 0.5);
+    return { text: q.text, answer: q.author, options: opts };
+  });
+  quizIdx = 0; quizScore2 = 0;
+  renderQuizProgress();
+  renderQuestion();
+}
+
+function renderQuizProgress() {
+  const el = document.getElementById('quiz-progress');
+  el.innerHTML = quizQuestions.map((_, i) =>
+    `<div class="qp-dot ${i < quizIdx ? 'done' : i === quizIdx ? 'current' : ''}"></div>`
+  ).join('');
+}
+
+function renderQuestion() {
+  if (quizIdx >= quizQuestions.length) {
+    const pct = Math.round(quizScore2 / quizQuestions.length * 100);
+    showResult(pct >= 70 ? '🏆' : '📚', pct >= 70 ? 'Kamu Luar Biasa!' : 'Terus Belajar!',
+      `Skor kamu: ${quizScore2}/${quizQuestions.length}\n${pct}% jawaban benar!`);
+    return;
+  }
+
+  quizAnswered = false;
+  const q = quizQuestions[quizIdx];
+  document.getElementById('quiz-score').textContent = quizScore2;
+  document.getElementById('quiz-num').textContent = `${quizIdx + 1}`;
+  document.getElementById('quiz-question').textContent = `"${q.text}"`;
+  document.getElementById('quiz-feedback').className = 'quiz-feedback';
+  document.getElementById('quiz-next-btn').style.display = 'none';
+
+  const opts = document.getElementById('quiz-options');
+  opts.innerHTML = q.options.map(o =>
+    `<button class="quiz-opt" onclick="answerQuiz('${o.replace(/'/g,"\\'")}')"> ${o}</button>`
+  ).join('');
+
+  renderQuizProgress();
+}
+
+function answerQuiz(answer) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const q = quizQuestions[quizIdx];
+  const correct = answer === q.answer;
+  if (correct) quizScore2++;
+
+  document.querySelectorAll('.quiz-opt').forEach(btn => {
+    btn.disabled = true;
+    if (btn.textContent.trim() === q.answer) btn.classList.add('correct-ans');
+    else if (btn.textContent.trim() === answer && !correct) btn.classList.add('wrong-ans');
+  });
+
+  const fb = document.getElementById('quiz-feedback');
+  fb.className = 'quiz-feedback show ' + (correct ? 'good' : 'bad');
+  fb.textContent = correct ? '✅ Tepat sekali! Kamu tahu kata-katanya.' : `❌ Bukan. Jawabannya: ${q.answer}`;
+
+  document.getElementById('quiz-score').textContent = quizScore2;
+  document.getElementById('quiz-next-btn').style.display = 'inline-flex';
+}
+
+function nextQuestion() {
+  quizIdx++;
+  renderQuestion();
+}
+
+/* ── RESULT OVERLAY ── */
+function showResult(emoji, title, desc) {
+  document.getElementById('result-emoji').textContent = emoji;
+  document.getElementById('result-title').textContent = title;
+  document.getElementById('result-desc').textContent = desc;
+  document.getElementById('result-overlay').classList.add('show');
+}
+
+function closeResult() {
+  document.getElementById('result-overlay').classList.remove('show');
+  const active = document.querySelector('.game-area.visible');
+  if (active) {
+    if (active.id === 'game-hangman') initHangman();
+    if (active.id === 'game-memory') initMemory();
+    if (active.id === 'game-quiz') initQuiz();
+  }
+}
+
+/* ── INIT ── */
+loadData();
+</script>
+</body>
+</html>

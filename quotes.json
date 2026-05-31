@@ -1,0 +1,234 @@
+{
+  "quotes": [
+    {
+      "id": 1,
+      "text": "Hidup bukan tentang menunggu badai berlalu, tapi belajar menari di tengah hujan.",
+      "author": "Vivian Greene",
+      "category": "motivasi",
+      "mood": ["sedih", "galau", "semangat"]
+    },
+    {
+      "id": 2,
+      "text": "Jangan takut gagal. Takutlah tidak pernah mencoba.",
+      "author": "Roy T. Bennett",
+      "category": "motivasi",
+      "mood": ["takut", "ragu", "semangat"]
+    },
+    {
+      "id": 3,
+      "text": "Kebahagiaan bukan milik mereka yang memiliki segalanya, tapi milik mereka yang bersyukur atas apa yang ada.",
+      "author": "Anonim",
+      "category": "kehidupan",
+      "mood": ["sedih", "bahagia", "tenang"]
+    },
+    {
+      "id": 4,
+      "text": "Cinta sejati tidak membuat kamu menjadi lebih lemah, melainkan membuatmu lebih kuat.",
+      "author": "Paulo Coelho",
+      "category": "cinta",
+      "mood": ["cinta", "rindu", "bahagia"]
+    },
+    {
+      "id": 5,
+      "text": "Setiap hari adalah kesempatan baru untuk menjadi lebih baik dari kemarin.",
+      "author": "Anonim",
+      "category": "motivasi",
+      "mood": ["semangat", "bersyukur", "tenang"]
+    },
+    {
+      "id": 6,
+      "text": "Luka yang paling dalam seringkali datang dari orang yang paling kita cintai.",
+      "author": "Anonim",
+      "category": "kehidupan",
+      "mood": ["sedih", "galau", "rindu"]
+    },
+    {
+      "id": 7,
+      "text": "Kegagalan hanyalah kesempatan untuk memulai lagi dengan lebih cerdas.",
+      "author": "Henry Ford",
+      "category": "motivasi",
+      "mood": ["semangat", "takut", "ragu"]
+    },
+    {
+      "id": 8,
+      "text": "Jangan bandingkan perjalananmu dengan orang lain. Setiap orang berjalan di jalurnya sendiri.",
+      "author": "Anonim",
+      "category": "kehidupan",
+      "mood": ["sedih", "ragu", "tenang"]
+    },
+    {
+      "id": 9,
+      "text": "Cinta itu bukan sekadar kata-kata, ia adalah tindakan yang dilakukan setiap hari.",
+      "author": "Anonim",
+      "category": "cinta",
+      "mood": ["cinta", "bahagia", "rindu"]
+    },
+    {
+      "id": 10,
+      "text": "Mimpi tidak punya harga. Tapi untuk mewujudkannya, kamu harus membayar dengan kerja keras.",
+      "author": "Anonim",
+      "category": "motivasi",
+      "mood": ["semangat", "takut", "ragu"]
+    },
+    {
+      "id": 11,
+      "text": "Waktu tidak menunggu siapapun. Gunakan setiap detiknya dengan bermakna.",
+      "author": "Anonim",
+      "category": "waktu",
+      "mood": ["semangat", "tenang", "bersyukur"]
+    },
+    {
+      "id": 12,
+      "text": "Persahabatan sejati adalah saat kamu bisa diam bersama tanpa perlu mengisi kesunyian.",
+      "author": "Anonim",
+      "category": "persahabatan",
+      "mood": ["bahagia", "tenang", "rindu"]
+    },
+    {
+      "id": 13,
+      "text": "Bersyukurlah atas hal-hal kecil, karena suatu hari kamu akan sadar bahwa itu adalah hal-hal besar.",
+      "author": "Robert Brault",
+      "category": "kehidupan",
+      "mood": ["bersyukur", "tenang", "bahagia"]
+    },
+    {
+      "id": 14,
+      "text": "Jangan pernah menyerah. Hari yang paling gelap pun pasti akan berakhir dan matahari akan bersinar kembali.",
+      "author": "Victor Hugo",
+      "category": "motivasi",
+      "mood": ["sedih", "galau", "semangat"]
+    },
+    {
+      "id": 15,
+      "text": "Keberanian bukan tidak memiliki rasa takut, tapi melangkah maju meski hati gemetar.",
+      "author": "Nelson Mandela",
+      "category": "motivasi",
+      "mood": ["takut", "semangat", "ragu"]
+    },
+    {
+      "id": 16,
+      "text": "Cinta yang tulus tidak menuntut, ia hanya memberi dengan sepenuh hati.",
+      "author": "Anonim",
+      "category": "cinta",
+      "mood": ["cinta", "tenang", "bahagia"]
+    },
+    {
+      "id": 17,
+      "text": "Senyum adalah bahasa universal yang bisa dipahami semua orang di seluruh dunia.",
+      "author": "Anonim",
+      "category": "kehidupan",
+      "mood": ["bahagia", "tenang", "bersyukur"]
+    },
+    {
+      "id": 18,
+      "text": "Ketika segalanya terasa berat, ingatlah bahwa itu berarti kamu sedang tumbuh.",
+      "author": "Anonim",
+      "category": "motivasi",
+      "mood": ["sedih", "galau", "semangat"]
+    },
+    {
+      "id": 19,
+      "text": "Merindukan seseorang adalah bukti bahwa kehadiran mereka benar-benar berarti bagimu.",
+      "author": "Anonim",
+      "category": "cinta",
+      "mood": ["rindu", "sedih", "cinta"]
+    },
+    {
+      "id": 20,
+      "text": "Hidup terlalu singkat untuk dihabiskan dengan penyesalan. Maafkan, lupakan, dan melangkahlah.",
+      "author": "Anonim",
+      "category": "kehidupan",
+      "mood": ["sedih", "galau", "tenang"]
+    },
+    {
+      "id": 21,
+      "text": "Ilmu adalah cahaya yang menerangi gelapnya kebodohan.",
+      "author": "Anonim",
+      "category": "motivasi",
+      "mood": ["semangat", "tenang", "bersyukur"]
+    },
+    {
+      "id": 22,
+      "text": "Ketulusan hati adalah mahkota yang tak ternilai harganya.",
+      "author": "Anonim",
+      "category": "kehidupan",
+      "mood": ["tenang", "bersyukur", "bahagia"]
+    },
+    {
+      "id": 23,
+      "text": "Perjalanan seribu mil dimulai dengan satu langkah pertama.",
+      "author": "Lao Tzu",
+      "category": "motivasi",
+      "mood": ["semangat", "ragu", "takut"]
+    },
+    {
+      "id": 24,
+      "text": "Cinta pertama mungkin bukan yang terakhir, tapi cinta yang terakhir pasti yang paling indah.",
+      "author": "Anonim",
+      "category": "cinta",
+      "mood": ["cinta", "rindu", "bahagia"]
+    },
+    {
+      "id": 25,
+      "text": "Jadilah perubahan yang ingin kamu lihat di dunia ini.",
+      "author": "Mahatma Gandhi",
+      "category": "motivasi",
+      "mood": ["semangat", "tenang", "bersyukur"]
+    },
+    {
+      "id": 26,
+      "text": "Tidak ada yang namanya keberuntungan murni. Di balik setiap keberhasilan ada kerja keras tersembunyi.",
+      "author": "Anonim",
+      "category": "motivasi",
+      "mood": ["semangat", "ragu", "takut"]
+    },
+    {
+      "id": 27,
+      "text": "Kesabaran adalah pohon yang berbuah manis, meski akarnya pahit.",
+      "author": "Anonim",
+      "category": "kehidupan",
+      "mood": ["tenang", "sedih", "galau"]
+    },
+    {
+      "id": 28,
+      "text": "Mencintai diri sendiri bukan kesombongan, itu adalah fondasi dari segala kebaikan.",
+      "author": "Anonim",
+      "category": "cinta",
+      "mood": ["cinta", "tenang", "bahagia"]
+    },
+    {
+      "id": 29,
+      "text": "Teman sejati adalah yang hadir saat semua orang pergi.",
+      "author": "Anonim",
+      "category": "persahabatan",
+      "mood": ["sedih", "bahagia", "bersyukur"]
+    },
+    {
+      "id": 30,
+      "text": "Setiap matahari terbenam membawa harapan bahwa esok hari akan lebih cerah.",
+      "author": "Anonim",
+      "category": "kehidupan",
+      "mood": ["sedih", "tenang", "bersyukur"]
+    }
+  ],
+  "moods": [
+    { "id": "semangat", "label": "Semangat 🔥", "color": "#FF6B35" },
+    { "id": "sedih", "label": "Sedih 💧", "color": "#4A90D9" },
+    { "id": "bahagia", "label": "Bahagia ✨", "color": "#F7C948" },
+    { "id": "galau", "label": "Galau 🌧️", "color": "#7B68EE" },
+    { "id": "cinta", "label": "Cinta 💕", "color": "#FF69B4" },
+    { "id": "rindu", "label": "Rindu 🌙", "color": "#9B59B6" },
+    { "id": "tenang", "label": "Tenang 🍃", "color": "#27AE60" },
+    { "id": "takut", "label": "Takut 😰", "color": "#E74C3C" },
+    { "id": "ragu", "label": "Ragu 🤔", "color": "#95A5A6" },
+    { "id": "bersyukur", "label": "Bersyukur 🙏", "color": "#E67E22" }
+  ],
+  "categories": [
+    { "id": "semua", "label": "Semua" },
+    { "id": "motivasi", "label": "Motivasi" },
+    { "id": "cinta", "label": "Cinta" },
+    { "id": "kehidupan", "label": "Kehidupan" },
+    { "id": "persahabatan", "label": "Persahabatan" },
+    { "id": "waktu", "label": "Waktu" }
+  ]
+}
